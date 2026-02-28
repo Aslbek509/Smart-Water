@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Water – Every Drop Matters</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body>
+    <!-- Loading Animation -->
+    <div class="loader-container" id="loaderContainer">
+        <div class="water-loader">
+            <div class="water-drop"></div>
+            <p class="loader-text">Smart Water</p>
+        </div>
+    </div>
+
+    <!-- Dark Mode Toggle -->
+    <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle dark mode">
+        <svg class="sun-icon" viewBox="0 0 24 24" width="24" height="24">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <svg class="moon-icon" viewBox="0 0 24 24" width="24" height="24">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+    </button>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">💧</span>
+                <span class="logo-text">Smart Water</span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#hero" class="nav-link">Home</a></li>
+                <li><a href="#problem" class="nav-link">Problem</a></li>
+                <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
+                <li><a href="#interactive-solution" class="nav-link">Solution</a></li>
+                <li><a href="#map" class="nav-link">Map</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-background">
+            <canvas id="waveCanvas"></canvas>
+            <div class="animated-gradient"></div>
+        </div>
+        <div class="floating-particles" id="particles"></div>
+        
+        <div class="hero-content">
+            <h1 class="hero-title" id="heroTitle">
+                <span class="title-word">Smart</span>
+                <span class="title-word">Water</span>
+            </h1>
+            <p class="hero-subtitle">Every Drop Matters</p>
+            <p class="hero-description">Monitor water quality in real-time and protect your family from harmful contaminants</p>
+            
+            <button class="cta-button" id="ctaBtn">
+                <span>Check Water Quality</span>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M10 2L18 10L10 18M18 10H2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Floating 3D Water Drop -->
+        <div class="floating-3d-drop">
+            <div class="drop-shadow"></div>
+            <div class="drop-body">
+                <div class="drop-inner"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem-section" id="problem">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Global Water Crisis</h2>
+            <p class="section-subtitle" data-aos="fade-up">The world faces an unprecedented water crisis</p>
+
+            <div class="stats-grid">
+                <div class="stat-card glass-effect" data-aos="flip-left">
+                    <div class="stat-icon">👥</div>
+                    <h3 class="stat-number" data-target="2">0</h3>
+                    <span class="stat-unit">Billion</span>
+                    <p class="stat-label">People Lack Safe Drinking Water</p>
+                </div>
+
+                <div class="stat-card glass-effect" data-aos="flip-left" data-aos-delay="100">
+                    <div class="stat-icon">💦</div>
+                    <h3 class="stat-number" data-target="80">0</h3>
+                    <span class="stat-unit">%</span>
+                    <p class="stat-label">Wastewater Returned Untreated</p>
+                </div>
+
+                <div class="stat-card glass-effect" data-aos="flip-left" data-aos-delay="200">
+                    <div class="stat-icon">🦠</div>
+                    <h3 class="stat-number" data-target="4">0</h3>
+                    <span class="stat-unit">Billion</span>
+                    <p class="stat-label">People Affected by Pollution</p>
+                </div>
+
+                <div class="stat-card glass-effect" data-aos="flip-left" data-aos-delay="300">
+                    <div class="stat-icon">🌍</div>
+                    <h3 class="stat-number" data-target="2">0</h3>
+                    <span class="stat-unit">Billion</span>
+                    <p class="stat-label">At Risk Annually</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How Smart Water Works</h2>
+            <p class="section-subtitle">4 Simple Steps to Clean Water</p>
+
+            <div class="steps-container">
+                <div class="step-card glass-effect" data-step="1">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">📦</div>
+                    <h3>Install Smart Sensor</h3>
+                    <p>Deploy our compact, wireless sensor to your water source</p>
+                    <div class="step-details">
+                        <ul>
+                            <li>✓ Easy installation</li>
+                            <li>✓ Wireless connectivity</li>
+                            <li>✓ 2-year battery life</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="arrow-icon">→</div>
+
+                <div class="step-card glass-effect" data-step="2">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">🔬</div>
+                    <h3>Sensor Scans Water</h3>
+                    <p>Real-time analysis of pH, bacteria, chemicals, and contaminants</p>
+                    <div class="step-details">
+                        <ul>
+                            <li>✓ pH levels (0-14)</li>
+                            <li>✓ Bacteria detection</li>
+                            <li>✓ Chemical analysis</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="arrow-icon">→</div>
+
+                <div class="step-card glass-effect" data-step="3">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">📱</div>
+                    <h3>Data to Your Phone</h3>
+                    <p>Instant data synchronization to your mobile app dashboard</p>
+                    <div class="step-details">
+                        <ul>
+                            <li>✓ Real-time updates</li>
+                            <li>✓ Cloud storage</li>
+                            <li>✓ Historical trends</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="arrow-icon">→</div>
+
+                <div class="step-card glass-effect" data-step="4">
+                    <div class="step-number">4</div>
+                    <div class="step-icon">🚨</div>
+                    <h3>Safety Alert</h3>
+                    <p>Receive instant notifications when water quality drops below safe levels</p>
+                    <div class="step-details">
+                        <ul>
+                            <li>✓ Push notifications</li>
+                            <li>✓ SMS alerts</li>
+                            <li>✓ Email reports</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Problem-Solution Section -->
+    <section class="interactive-solution" id="interactive-solution">
+        <div class="container">
+            <h2 class="section-title">Interactive Problem-Solution Guide</h2>
+            <p class="section-subtitle">Click on a problem to see the step-by-step solution</p>
+
+            <div class="solution-wrapper">
+                <!-- Problems Panel (Left) -->
+                <div class="problems-panel">
+                    <h3 class="panel-title">Common Water Problems</h3>
+                    
+                    <div class="problem-button-group">
+                        <button class="problem-btn glass-effect active" data-problem="dirty">
+                            <span class="problem-icon">💧</span>
+                            <span class="problem-name">Dirty Drinking Water</span>
+                            <span class="ripple"></span>
+                        </button>
+
+                        <button class="problem-btn glass-effect" data-problem="bacteria">
+                            <span class="problem-icon">🦠</span>
+                            <span class="problem-name">Hidden Bacteria</span>
+                            <span class="ripple"></span>
+                        </button>
+
+                        <button class="problem-btn glass-effect" data-problem="chemical">
+                            <span class="problem-icon">⚗️</span>
+                            <span class="problem-name">Chemical Contamination</span>
+                            <span class="ripple"></span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Solutions Panel (Right) -->
+                <div class="solutions-panel">
+                    <!-- Dirty Water Solution -->
+                    <div class="solution-content active" data-solution="dirty">
+                        <h3 class="solution-title">🌊 Dirty Drinking Water Solution</h3>
+                        <p class="solution-description">Contaminated water can cause serious health issues. Smart Water detects and prevents contamination.</p>
+                        
+                        <div class="timeline">
+                            <div class="timeline-item" data-step="1">
+                                <div class="timeline-marker">
+                                    <span class="step-num">1</span>
+                                </div>
+                                <div class="timeline-content glass-effect">
+                                    <h4>Detect Sediment & Particles</h4>
+                                    <p>Our sensor identifies visible and microscopic particles that make water murky or unsafe</p>
+                                    <div class="step-icon-large">🔍</div>
+                                </div>
+                            </div>
+
+                            <div class="timeline-line"></div>
+
+                            <div class="timeline-item" data-step="2">
+                                <div class="timeline-marker">
+                                    <span class="step-num">2</span>
+                                </div>
+                                <div class="timeline-content glass-effect">
+                                    <h4>Analyze Water Composition</h4>
+                                    <p>Advanced sensors measure pH, turbidity, and total dissolved solids (TDS)</p>
+                                    <div class="step-icon-large">📊</div>
+                                </div>
+                            </div>
+
+                            <div class="timeline-line"></div>
+
+                            <div class="timeline-item" data-step="3">
+                                <div class="timeline-marker">
+                                    <span class="step-num">3</span>
+                                </div>
+                                <div class="timeline-content glass-effect">
+                                    <h4>Get Instant Recommendation</h4>
+                                    <p>Receive immediate alert if water is unsafe. Suggestion for purification methods</p>
+                                    <div class="step-icon-large">✅</div>
+                                </div>
+                            </div>
+
+                            <div class="timeline-line"></div>
+
+                            <div class="timeline-item" data-step="4">
+                                <div class="timeline-marker">
+                                    <span class="step-num">4</span>
+                                </div>
+                                <div class="timeline-content glass-effect">
+                                    <h4>Track Water Safety History</h4>
+                                    <p>Monitor trends over time and get recommendations for filtration systems</p>
+                                    <div class="step-icon-large">📈</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bacteria Solution -->
+                    <div class="solution-content" data-solution="bacteria">
+                        <h3 class="solution-title">🦠 Hidden Bacteria Detection</h3>
+                        <p class="solution-description">Bacteria like E. Coli, Salmonella, and Legionella are invisible. Smart Water finds them before they harm you.</p>
+                        
+                        <div class="timeline">
+                            <div class="timeline-item" data-step="1">
+                                <div class="timeline-marker">
+                                    <span class="step-num">1</span>
+                                </div>
+                                <div class="timeline-content glass-effect">
+                                    <h4>Biological Testing</h4>
+                                    <p>Sensor uses advanced pathogen detection technology to identify harmful bacteria</p>
+                                    <div class="step-icon-large">🔬</div>
+                                </div>
+                            </div>
+
+                            <div class="timeline-line"></div>
+
+                            <div class="timeline-item" data-step="2">
+                                <div class="timeline-marker">
+                                    <span class="step-num">2</span>
+                                </div>
+                                <div class="timeline-content glass-effect">
+                                    <h4>Real-time Bacterial Count</h4>
+                                    <p>Monitor CFU/mL (Colony Forming Units) and bacterial levels continuously</p>
+                                    <div class="step-icon-large">📡</div>
+                                </div>
+                            </div>
+
+                            <div class="timeline-line"></div>
+
+                            <div class="timeline-item" data-step="3">
+                                <div class="timeline-marker">
+                                    <span class="step-num">3</span>
+                                </div>
+                                <div class="timeline-content glass-effect">
+                                    <h4>Critical Alert System</h4>
+                                    <p>Instant notification if E. Coli or other pathogens are detected</p>
+                                    <div class="step-icon-large">🚨</div>
+                                </div>
+                            </div>
+
+                            <div class="timeline-line"></div>
+
+                            <div class="timeline-item" data-step="4">
+                                <div class="timeline-marker">
+                                    <span class="step-num">4</span>
+                                </div>
+                                <div class="timeline-content glass-effect">
+                                    <h4>Safe Consumption Guide</h4>
+                                    <p>Get recommendations for boiling, chlorination, or UV treatment</p>
+                                    <div class="step-icon-large">💪</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chemical Contamination Solution -->
+                    <div class="solution-content" data-solution="chemical">
+                        <h3 class="solution-title">⚗️ Chemical Contamination Detection</h3>
+                        <p class="solution-description">Heavy metals, pesticides, and industrial chemicals pose serious risks. We detect them all.</p>
+                        
+                        <div class="timeline">
+                            <div class="timeline-item" data-step="1">
+                                <div class="timeline-marker">
+                                    <span class="step-num">1</span>
+                                </div>
+                                <div class="timeline-content glass-effect">
+                                    <h4>Heavy Metal Detection</h4>
+                                    <p>Identify lead, arsenic, mercury, cadmium, and chromium levels</p>
+                                    <div class="step-icon-large">⚠️</div>
+                                </div>
+                            </div>
+
+                            <div class="timeline-line"></div>
+
+                            <div class="timeline-item" data-step="2">
+                                <div class="timeline-marker">
+                                    <span class="step-num">2</span>
+                                </div>
+                                <div class="timeline-content glass-effect">
+                                    <h4>Pesticide & Herbicide Scan</h4>
+                                    <p>Detect agricultural chemicals and industrial pollutants</p>
+                                    <div class="step-icon-large">🌾</div>
+                                </div>
+                            </div>
+
+                            <div class="timeline-line"></div>
+
+                            <div class="timeline-item" data-step="3">
+                                <div class="timeline-marker">
+                                    <span class="step-num">3</span>
+                                </div>
+                                <div class="timeline-content glass-effect">
+                                    <h4>WHO Standard Comparison</h4>
+                                    <p>Compare results against WHO and EPA safety standards</p>
+                                    <div class="step-icon-large">📋</div>
+                                </div>
+                            </div>
+
+                            <div class="timeline-line"></div>
+
+                            <div class="timeline-item" data-step="4">
+                                <div class="timeline-marker">
+                                    <span class="step-num">4</span>
+                                </div>
+                                <div class="timeline-content glass-effect">
+                                    <h4>Advanced Filtration</h4>
+                                    <p>Recommendations for activated carbon, reverse osmosis, or ion exchange</p>
+                                    <div class="step-icon-large">🏭</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Water Map Section -->
+    <section class="map-section" id="map">
+        <div class="container">
+            <h2 class="section-title">Global Water Quality Map</h2>
+            <p class="section-subtitle">Real-time monitoring across 150 countries</p>
+
+            <div class="map-container glass-effect">
+                <svg viewBox="0 0 960 600" class="world-map" id="worldMap">
+                    <defs>
+                        <filter id="glow">
+                            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                            <feMerge>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                    </defs>
+                    <g class="continents">
+                        <!-- North America -->
+                        <ellipse cx="150" cy="150" rx="60" ry="80" fill="#1a3a52" opacity="0.3"/>
+                        <!-- South America -->
+                        <ellipse cx="180" cy="350" rx="40" ry="100" fill="#1a3a52" opacity="0.3"/>
+                        <!-- Europe -->
+                        <ellipse cx="480" cy="120" rx="80" ry="60" fill="#1a3a52" opacity="0.3"/>
+                        <!-- Africa -->
+                        <ellipse cx="520" cy="320" rx="70" ry="120" fill="#1a3a52" opacity="0.3"/>
+                        <!-- Asia -->
+                        <ellipse cx="700" cy="200" rx="120" ry="140" fill="#1a3a52" opacity="0.3"/>
+                        <!-- Australia -->
+                        <ellipse cx="800" cy="450" rx="50" ry="60" fill="#1a3a52" opacity="0.3"/>
+                    </g>
+                </svg>
+
+                <div class="water-indicators">
+                    <!-- Safe locations (Green) -->
+                    <div class="indicator safe" style="top: 25%; left: 20%;" data-status="safe" title="Tokyo - Safe"></div>
+                    <div class="indicator safe" style="top: 35%; left: 55%;" data-status="safe" title="Stockholm - Safe"></div>
+                    <div class="indicator safe" style="top: 45%; left: 15%;" data-status="safe" title="Vancouver - Safe"></div>
+
+                    <!-- Warning locations (Yellow) -->
+                    <div class="indicator warning" style="top: 50%; left: 35%;" data-status="warning" title="São Paulo - Warning"></div>
+                    <div class="indicator warning" style="top: 55%; left: 60%;" data-status="warning" title="Delhi - Warning"></div>
+                    <div class="indicator warning" style="top: 65%; left: 80%;" data-status="warning" title="Jakarta - Warning"></div>
+
+                    <!-- Dangerous locations (Red) -->
+                    <div class="indicator dangerous" style="top: 60%; left: 50%;" data-status="dangerous" title="Lagos - Dangerous"></div>
+                    <div class="indicator dangerous" style="top: 70%; left: 65%;" data-status="dangerous" title="Cairo - Dangerous"></div>
+                </div>
+
+                <div class="map-legend">
+                    <div class="legend-item">
+                        <span class="legend-dot safe"></span>
+                        <span>Safe</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-dot warning"></span>
+                        <span>Warning</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-dot dangerous"></span>
+                        <span>Dangerous</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <h2 class="section-title">Get Started Today</h2>
+            <p class="section-subtitle">Join thousands protecting their water quality</p>
+
+            <div class="contact-wrapper">
+                <div class="contact-form glass-effect">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" placeholder="Your Name" required>
+                            <span class="form-border"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Email" required>
+                            <span class="form-border"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="tel" placeholder="Your Phone">
+                            <span class="form-border"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <textarea placeholder="Your Message" rows="5"></textarea>
+                            <span class="form-border"></span>
+                        </div>
+
+                        <button type="submit" class="cta-button">
+                            <span>Send Message</span>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M3 10H17M17 10L10 3M17 10L10 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+
+                <div class="contact-info">
+                    <div class="info-card glass-effect">
+                        <div class="info-icon">📧</div>
+                        <h4>Email</h4>
+                        <p>contact@smartwater.com</p>
+                    </div>
+
+                    <div class="info-card glass-effect">
+                        <div class="info-icon">📱</div>
+                        <h4>Phone</h4>
+                        <p>+1 (800) WATER-01</p>
+                    </div>
+
+                    <div class="info-card glass-effect">
+                        <div class="info-icon">📍</div>
+                        <h4>Address</h4>
+                        <p>Global Headquarters, Water City</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Smart Water</h4>
+                    <p>Protecting global water quality through innovative technology and real-time monitoring.</p>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#hero">Home</a></li>
+                        <li><a href="#problem">Problem</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#map">Map</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="https://github.com/Aslbek509/smart-water" target="_blank">GitHub</a></li>
+                        <li><a href="#" target="_blank">Documentation</a></li>
+                        <li><a href="#" target="_blank">Blog</a></li>
+                        <li><a href="#" target="_blank">Support</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Twitter">🐦</a>
+                        <a href="#" aria-label="Facebook">👍</a>
+                        <a href="#" aria-label="Instagram">📷</a>
+                        <a href="#" aria-label="LinkedIn">💼</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Smart Water. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
